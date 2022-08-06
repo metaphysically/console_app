@@ -144,12 +144,17 @@ public class adminLoggedIn {
             System.out.println("Delete teacher data.");
             deleteTeacher();
         }
+        else if (x == 5) {
+            System.out.println("Logged out of system.");
+            mainScript.main(new String[]{});
+        }
         else {
             System.out.println("Option does not exist.");
             System.out.println("For adding a student's data into the database, enter 1");
             System.out.println("For adding a teacher's data into the database, enter 2");
             System.out.println("For deleting a student's data from the database, enter 3");
             System.out.println("For deleting a teacher's data from the database, enter 4");
+            System.out.println("For logging out of the system, enter 5");
 
             int a = input.nextInt();
             execute(a);
@@ -161,6 +166,7 @@ public class adminLoggedIn {
         System.out.println("For adding a teacher's data into the database, enter 2");
         System.out.println("For deleting a student's data from the database, enter 3");
         System.out.println("For deleting a teacher's data from the database, enter 4");
+        System.out.println("For logging out of the system, enter 5");
 
         System.out.println("You chose: ");
         int x = input.nextInt();

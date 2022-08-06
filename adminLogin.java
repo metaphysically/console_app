@@ -1,12 +1,12 @@
 
 import java.util.*;
 public class adminLogin {
+    static Scanner input = new Scanner(System.in);
     static String username = "admin";
     static String password = "admin123";
     static String user;
     static String pass;
     public static void input() {
-        Scanner input = new Scanner(System.in);
         System.out.println("     Admin Login     ");
         System.out.print("Username: ");
         user = input.next();
@@ -14,7 +14,6 @@ public class adminLogin {
         System.out.print("Password: ");
         pass = input.next();
         System.out.println();
-        input.close();
     }
     public static void validate() {
         if (username.equals(user) && password.equals(pass)) {

@@ -11,14 +11,13 @@ public class mainScript {
         System.out.println("Enter 'T' for logging in as a teacher");
         System.out.print("Logging in as: ");
         choice = input.next().charAt(0);
-        input.close();
     }
     public static void validate() {
         if (choice == 'a' || choice == 'A') {
-            adminLogin.main(new String[] {});
+            adminLogin.main(new String[]{});
         }
         else if (choice == 's' || choice == 'S') {
-
+            studentLogin.main(new String[]{});
         }
         else if (choice == 't' || choice == 'T') {
 
@@ -31,6 +30,6 @@ public class mainScript {
     }
     public static void main (String[] args) {
         input();
-        validate();
+         validate();
     }
 }
