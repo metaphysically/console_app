@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.*;
 public class teacherLogin {
     static Scanner input = new Scanner(System.in);
+    static String username, password;
     public static boolean validate(String username, String password) {
         boolean status = false;
         try {
@@ -22,7 +23,6 @@ public class teacherLogin {
     }
 
     public static void login() {
-        String username, password;
 
         System.out.println("  Teacher Login   ");
         System.out.print("Username: ");
@@ -33,9 +33,17 @@ public class teacherLogin {
         if (validate(username, password)) {
             System.out.println("Logged in Successfully.");
             teacherLoggedIn.main(new String[]{});
-        } else {
+        }
+        else {
             System.out.println("Failed to login. Please try again.");
-            login();
+            System.out.println("Try again? Yes/No");
+            String cancel = input.next();
+            if (cancel.equalsIgnoreCase("Yes") || cancel.equalsIgnoreCase("y")) {
+                login();
+            }
+            else {
+                mainScript.main(new String[]{});
+            }
         }
     }
     public static void main (String[] args) {

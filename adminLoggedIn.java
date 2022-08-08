@@ -5,7 +5,7 @@ import java.util.*;
 
 public class adminLoggedIn {
     static Scanner input = new Scanner(System.in);
-    public static int studentSave(String username, String password){
+    public static int studentSave(String username, String password) {
         int status = 0;
         try {
             Connection con = connection.getConnection();
@@ -21,7 +21,7 @@ public class adminLoggedIn {
         return status;
     }
 
-    public static int teacherSave(String username, String password){
+    public static int teacherSave (String username, String password) {
         int status = 0;
         try {
             Connection con = connection.getConnection();
@@ -77,9 +77,11 @@ public class adminLoggedIn {
         int i = studentSave(username, password);
         if (i > 0) {
             System.out.println("Student data saved successfully.");
+            main(new String[]{});
         }
         else {
             System.out.println("Unable to save data.");
+            main(new String[]{});
         }
     }
     public static void addTeacher() {
@@ -94,9 +96,11 @@ public class adminLoggedIn {
         int i = teacherSave(username, password);
         if (i > 0) {
             System.out.println("Teacher data saved successfully.");
+            main(new String[]{});
         }
         else {
             System.out.println("Unable to save data.");
+            main(new String[]{});
         }
     }
     public static void deleteStudent() {
@@ -108,9 +112,11 @@ public class adminLoggedIn {
 
         if (i > 0) {
             System.out.println("Student data deleted successfully.");
+            main(new String[]{});
         }
         else {
             System.out.println("Unable to delete student data.");
+            main(new String[]{});
         }
     }
     public static void deleteTeacher() {
@@ -122,9 +128,11 @@ public class adminLoggedIn {
 
         if (i > 0) {
             System.out.println("Teacher data deleted successfully.");
+            main(new String[]{});
         }
         else {
             System.out.println("Unable to delete teacher data.");
+            main(new String[]{});
         }
     }
     public static void execute (int x) {
