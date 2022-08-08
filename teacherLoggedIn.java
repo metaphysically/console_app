@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.*;
 
 public class teacherLoggedIn {
@@ -34,6 +35,27 @@ public class teacherLoggedIn {
         }
         return status;
     }
+
+    public static boolean classExists (String classCode) {
+        boolean exists = false;
+
+        try {
+            String query = "select * from Classes where class_code = ?";
+            Connection con = connection.getConnection();
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, classCode);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next() == true) {
+                exists = true;
+            }
+            con.close();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        return exists;
+    }
+
     public static void actionChooser() {
         System.out.println("For adding classes, enter 'A'");
         System.out.println("For deleting classes, enter 'D'");
@@ -52,10 +74,10 @@ public class teacherLoggedIn {
             deleteClass();
         }
         else if (ch == 'e' || ch == 'E') {
-
+            editClass();
         }
         else if (ch == 'r' || ch == 'R') {
-
+            createRecord();
         }
         else if (ch == 'l' || ch == 'L') {
             mainScript.main(new String[]{});
@@ -99,6 +121,91 @@ public class teacherLoggedIn {
             System.out.println("Unable to delete class.");
             actionChooser();
         }
+    }
+    public static void editClass() {
+        System.out.println("    Editing a class.    ");
+        System.out.print("Class code: ");
+        String classCode = input.next();
+
+        if (classExists(classCode)) {
+            updateClass(classCode);
+        }
+        else {
+            System.out.println("Unable to find class.");
+            actionChooser();
+        }
+    }
+    public static void updateClass(String classCode) {
+        System.out.println("What fields need to be edited?");
+        System.out.println("For changing the name of the teacher taking the class, enter 't'");
+        System.out.println("For changing the timings of the class, enter 'z'");
+        System.out.print("You entered: ");
+
+        char ch = input.next().charAt(0);
+
+        if (ch == 't' || ch == 'T') {
+            System.out.println();
+            System.out.print("New Name: ");
+            String name = input.next();
+
+            int status = 0;
+
+            try {
+                String query = "update Classes set teacher = ? where class_code = ?";
+                Connection con = connection.getConnection();
+                PreparedStatement pst = con.prepareStatement(query);
+                pst.setString(1, name);
+                pst.setString(2, classCode);
+                status = pst.executeUpdate();
+                con.close();
+            }
+            catch (Exception e) {
+                System.out.println(e);
+            }
+            if (status > 0) {
+                System.out.println("Edited the name of the teacher successfully.");
+                actionChooser();
+            }
+            else {
+                System.out.println("Unable to edit the name of the teacher.");
+                actionChooser();
+            }
+        }
+        else if (ch == 'z' || ch == 'Z') {
+            System.out.println();
+            System.out.print("New Timings: ");
+            String timings = input.nextLine();
+
+            int status = 0;
+
+            try {
+                String query = "update Classes set timings = ? where class_code = ?";
+                Connection con = connection.getConnection();
+                PreparedStatement pst = con.prepareStatement(query);
+                pst.setString(1, timings);
+                pst.setString(2, classCode);
+                status = pst.executeUpdate();
+                con.close();
+            }
+            catch (Exception e) {
+                System.out.println(e);
+            }
+            if (status > 0) {
+                System.out.println("Edited the timings successfully.");
+                actionChooser();
+            }
+            else {
+                System.out.println("Unable to edit timings.");
+                actionChooser();
+            }
+        }
+        else {
+            System.out.println("Option does not exist.");
+            updateClass(classCode);
+        }
+    }
+    public static void createRecord() {
+
     }
     public static void main (String[] args) {
         actionChooser();

@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.*;
 public class studentLogin {
     static Scanner input = new Scanner(System.in);
+    static String username, password;
 
     public static boolean validate(String username, String password) {
         boolean status = false;
@@ -23,8 +24,6 @@ public class studentLogin {
     }
 
     public static void login() {
-        String username, password;
-
         System.out.println("  Student Login   ");
         System.out.print("Username: ");
         username = input.next();
