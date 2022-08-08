@@ -20,7 +20,7 @@ public class mainScript {
             studentLogin.main(new String[]{});
         }
         else if (choice == 't' || choice == 'T') {
-
+            teacherLogin.main(new String[]{});
         }
         else {
             System.out.println("Please enter a valid choice.");
