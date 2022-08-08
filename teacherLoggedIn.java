@@ -60,7 +60,6 @@ public class teacherLoggedIn {
         System.out.println("For adding classes, enter 'A'");
         System.out.println("For deleting classes, enter 'D'");
         System.out.println("For editing class details, enter 'E'");
-        System.out.println("For creating an attendance record, enter 'R'");
         System.out.println("For logging out, enter 'L'");
 
 
@@ -76,9 +75,6 @@ public class teacherLoggedIn {
         else if (ch == 'e' || ch == 'E') {
             editClass();
         }
-        else if (ch == 'r' || ch == 'R') {
-            createRecord();
-        }
         else if (ch == 'l' || ch == 'L') {
             mainScript.main(new String[]{});
         }
@@ -92,7 +88,9 @@ public class teacherLoggedIn {
         System.out.println("    Adding a class.     ");
         System.out.print("Class code: ");
         String classCode = input.next();
-        String name = teacherLogin.username;
+        System.out.println();
+        System.out.print("Teacher's name: ");
+        String name = input.nextLine();
         System.out.println();
         System.out.print("Timing details: ");
         String timings = input.nextLine();
@@ -114,7 +112,7 @@ public class teacherLoggedIn {
 
         int i = classDelete(classCode);
         if (i > 0) {
-            System.out.println("Class deleted succesfully.");
+            System.out.println("Class deleted successfully.");
             actionChooser();
         }
         else {
@@ -146,7 +144,7 @@ public class teacherLoggedIn {
         if (ch == 't' || ch == 'T') {
             System.out.println();
             System.out.print("New Name: ");
-            String name = input.next();
+            String name = input.nextLine();
 
             int status = 0;
 
@@ -203,9 +201,6 @@ public class teacherLoggedIn {
             System.out.println("Option does not exist.");
             updateClass(classCode);
         }
-    }
-    public static void createRecord() {
-
     }
     public static void main (String[] args) {
         actionChooser();
